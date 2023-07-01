@@ -1,0 +1,37 @@
+kind: TransferSQLToClickHouse
+version: 1.0
+spec:
+  tables:
+    sale_test:
+      metaspec:
+        sql: >-
+          SELECT
+              *
+          FROM test_part.sales_test
+          WHERE
+              date >=  '{{ data_interval_start }}'::timestamptz
+              AND date < '{{ data_interval_end }}'::timestamptz
+        incrementField: date
+        S3:
+          compression: gzip
+          format: CSV
+          SETTINGS:
+            - format_csv_delimiter = ';'
+            - format_csv_allow_double_quotes = 0
+      DAG:
+        monthly:
+          schedule: "0 0 1 * *"
+          catchup: true
+          start_date: "2018-01-01"
+          end_date: "2023-06-02"
+          tags:
+            - transfer_to_click
+          owner: airflow
+        daily:
+          schedule: "0 1 * * *"
+          catchup: true
+          start_date: "2023-05-30"
+          tags:
+            - transfer_to_click
+          owner: airflow
+

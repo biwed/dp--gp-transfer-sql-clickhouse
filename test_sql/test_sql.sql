@@ -19,3 +19,17 @@ select
       )::int + 1 as amt
 from
     test;
+
+   
+/*test GP*/   
+select count(*), sum(st.amt)
+from test_part.sales_test st 
+where "date" >= '2020-01-01'::date  and "date" <= '2021-01-01'::date
+
+
+/*click*/
+--DROP DATABASE transfer_ods;
+--DROP DATABASE transfer_stage_s3;
+select count(*), sum(st.amt)
+from transfer_ods.sale_test st 
+where st.`date` >= toDate('2020-01-01') and st.`date` <= toDate('2021-01-01')

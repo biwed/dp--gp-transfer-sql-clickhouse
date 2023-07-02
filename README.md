@@ -30,7 +30,7 @@ docker-compose up -d
 ```
 Тестирование:
 - создать подключение gp_admin, которое необходимо для работы с GP. Доступы см. ниже.
-- создание s3 бакета (dp-transfer-sql) на minio. Параметр берется из переменной Airflow transfer_to_click["S3_BUCKET"]
+- создание s3 бакета (dp-transfer-sql) на minio. Параметр берется из переменной Airflow transfer_to_click["S3_BUCKET"] [var.json](./var.json)
 - создание таблиц необходимых для проведения тестов находится в файле  [test_sql/test_sql.sql](./test_sql/test_sql.sql)
 - Завести pool для переноса данных "transfer_pool"
 - запуск DAG нарезки переноса по написанной  [yaml](./dags/transfersql_configs/transfer_sql.yaml) схеме.

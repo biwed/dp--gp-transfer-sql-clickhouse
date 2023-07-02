@@ -1,0 +1,3 @@
+infi.clickhouse-orm==2.1.3
+dacite==1.8.1
+apache-airflow-providers-postgres

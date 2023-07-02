@@ -1,0 +1,6 @@
+{
+  "transfer_to_click": {
+    "S3_BUCKET": "dp-transfer-sql",
+    "S3_SERVER": "http://minio:9000/"
+  }
+}
